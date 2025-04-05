@@ -16,9 +16,15 @@ function renderBoard() {
 
             // Thêm quân cờ vào mỗi ô vuông nếu có
             if (square) {
-                squareElement.innerText = square.type.toUpperCase();  // Hiển thị quân cờ
+                // Tạo hình ảnh quân cờ
+                const pieceImage = document.createElement('img');
+                pieceImage.src = `pieces-png/${square.color}-${square.type}.png`;  // Đường dẫn đến hình ảnh quân cờ
+                pieceImage.alt = `${square.color}-${square.type}`;
+                pieceImage.classList.add('piece');  // Để có thể tùy chỉnh thêm trong CSS
+                
+                squareElement.appendChild(pieceImage);
             }
-
+            
             boardElement.appendChild(squareElement);
         });
     });

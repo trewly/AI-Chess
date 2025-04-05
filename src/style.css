@@ -1,10 +1,13 @@
 #board {
+    position: relative;
+    top: 40px;
+    left: 100px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     gap: 1px;
-    width: 400px;  /* Kích thước của bàn cờ */
-    height: 400px; /* Kích thước của bàn cờ */
+    width: 300px;  /* Kích thước của bàn cờ */
+    height: 300px; /* Kích thước của bàn cờ */
     margin: auto;
 }
 
@@ -12,6 +15,12 @@
     width: 50px;  /* Kích thước của mỗi ô vuông */
     height: 50px; /* Kích thước của mỗi ô vuông */
     background-color: #fff;
+}
+
+.piece {
+    width: 100%;  /* Quân cờ sẽ chiếm toàn bộ ô vuông */
+    height: 100%;  /* Tương tự như trên */
+    object-fit: contain;  /* Đảm bảo quân cờ không bị méo */
 }
 
 .square.dark {
