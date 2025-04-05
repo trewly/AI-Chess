@@ -1,0 +1,23 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1px;
+    width: 400px;  /* Kích thước của bàn cờ */
+    height: 400px; /* Kích thước của bàn cờ */
+    margin: auto;
+}
+
+.square {
+    width: 50px;  /* Kích thước của mỗi ô vuông */
+    height: 50px; /* Kích thước của mỗi ô vuông */
+    background-color: #fff;
+}
+
+.square.dark {
+    background-color: #6b4226;  /* Màu của ô cờ tối */
+}
+
+.square.light {
+    background-color: #f1d9b5;  /* Màu của ô cờ sáng */
+}

@@ -1,16 +1,16 @@
 {
   "name": "ai_chess",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "AI Chess Game with Electron",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "chess.js": "^1.1.0",
-    "electron": "^35.1.4"
-  }
+    "chess.js": "^0.10.3",
+    "electron": "^24.0.0"
+  },
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "ISC"
 }
