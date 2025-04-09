@@ -30,3 +30,31 @@
 .square.light {
     background-color: #f1d9b5;  /* Màu của ô cờ sáng */
 }
+
+.square:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Thay đổi màu nền khi hover */
+    cursor: pointer;  /* Hiển thị con trỏ chuột dạng "pointer" khi hover */
+}
+
+.square.highlight {
+    position: relative;
+    background-color: rgba(255, 255, 0, 0.4) !important;
+}
+
+.square.selected {
+    background-color: rgba(0, 128, 255, 0.4) !important;
+}
+
+/* Đối với các ô có quân cờ của đối phương */
+.square.highlight::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}

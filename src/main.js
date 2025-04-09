@@ -12,9 +12,11 @@ function createWindow() {
             contextIsolation: false // Tắt isolation để cho phép việc này
         }
     });
-
+    
     // Sửa đường dẫn tới index.html cho đúng
     mainWindow.loadFile(path.join(__dirname, 'index.html'));  // Đảm bảo 'src' không bị trùng
+
+    mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);
