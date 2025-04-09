@@ -3,6 +3,9 @@ let game = new Chess();
 let selectedSquare = null; // Biến lưu trữ ô vuông đang chọn
 
 function renderBoard() {
+    //cap nhat gameturn
+    showTurnPopup() 
+
     const boardElement = document.getElementById('board');
     boardElement.innerHTML = '';  // Xóa bàn cờ trước khi vẽ lại
     
@@ -45,6 +48,31 @@ function renderBoard() {
     }
 }
 
+function showTurnPopup() {
+    const popup = document.getElementById('turn-popup');
+    const turnText = document.getElementById('turn-text');
+    
+    // Xác định lượt đi
+    const currentTurn = game.turn();
+    
+    // Cập nhật nội dung và kiểu
+    if (currentTurn === 'w') {
+      turnText.textContent = 'Lượt: Trắng đi';
+      popup.className = 'popup white-turn';
+    } else {
+      turnText.textContent = 'Lượt: Đen đi';
+      popup.className = 'popup black-turn';
+    }
+    
+    // Hiển thị popup
+    popup.style.display = 'block';
+    
+    // Tự động ẩn sau 1.5 giây
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 1500);
+  }
+
 // Hàm xử lý sự kiện click
 function handleSquareClick(squareId, square) {
     // Xóa highlight cũ
@@ -63,6 +91,13 @@ function handleSquareClick(squareId, square) {
             console.log('Move successful:', move.san);  // In ra nước đi đã thực hiện
             selectedSquare = null;
             renderBoard();  // Vẽ lại bàn cờ sau khi di chuyển
+
+            //chieu tuong
+            if (game.in_check()) {
+                // hoặc hiện thông báo lên popup:
+                document.getElementById("turn-text").innerText = "⚠️ Chiếu tướng!";
+            }
+
         } else {
             // Nếu nước đi không hợp lệ, kiểm tra xem có thể chọn quân mới không
             if (square && square.color === game.turn()) {

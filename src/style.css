@@ -58,3 +58,43 @@
     transform: translate(-50%, -50%);
     z-index: 0;
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 70px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+  }
+  
+  .popup-content {
+    text-align: center;
+  }
+  
+  .popup.white-turn #turn-text {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .popup.black-turn {
+    background-color: black;
+  }
+
+  .popup.black-turn #turn-text {
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
