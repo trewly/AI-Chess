@@ -1,6 +1,7 @@
 const Chess = require('chess.js').Chess;
 let game = new Chess();
 let selectedSquare = null; // Biến lưu trữ ô vuông đang chọn
+const worker = new Worker("engine-worker.js", { type: "module" });
 
 function renderBoard() {
     //cap nhat gameturn
@@ -96,6 +97,29 @@ function handleSquareClick(squareId, square) {
             if (game.in_check()) {
                 // hoặc hiện thông báo lên popup:
                 document.getElementById("turn-text").innerText = "⚠️ Chiếu tướng!";
+            }
+
+            if (!game.game_over() && game.turn() === 'b') {
+                console.log("Máy đang suy nghĩ...");
+                try {
+                    console.log("Sending FEN to worker:", game.fen());
+                    worker.postMessage([game.fen(), 2]);
+                } catch (error) {
+                    console.error("Error sending to worker:", error);
+                }
+                worker.onmessage = function(event) {
+                    const bestMove = event.data;
+                    console.log("Received move from engine:", bestMove);
+                    
+                    try {
+                        // Try to apply the move
+                        const moveResult = game.move(bestMove);
+                        console.log("Move applied:", moveResult);
+                        renderBoard();  // Vẽ lại bàn cờ sau khi máy đi
+                    } catch (error) {
+                        console.error("Error applying engine move:", error, bestMove);
+                    }
+                }
             }
 
         } else {

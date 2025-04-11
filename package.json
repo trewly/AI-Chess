@@ -12,5 +12,14 @@
   },
   "devDependencies": {},
   "author": "Your Name",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trewly/AI-Chess.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/trewly/AI-Chess/issues"
+  },
+  "homepage": "https://github.com/trewly/AI-Chess#readme"
 }
