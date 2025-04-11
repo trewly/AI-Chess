@@ -1,7 +1,7 @@
 const Chess = require('chess.js').Chess;
 let game = new Chess();
 let selectedSquare = null; // Biến lưu trữ ô vuông đang chọn
-const worker = new Worker("engine-worker.js", { type: "module" });
+const worker = new Worker('./engineworker.js');
 
 function renderBoard() {
     //cap nhat gameturn
@@ -99,6 +99,7 @@ function handleSquareClick(squareId, square) {
                 document.getElementById("turn-text").innerText = "⚠️ Chiếu tướng!";
             }
 
+            //gui FEN cho engine
             if (!game.game_over() && game.turn() === 'b') {
                 console.log("Máy đang suy nghĩ...");
                 try {
@@ -107,19 +108,7 @@ function handleSquareClick(squareId, square) {
                 } catch (error) {
                     console.error("Error sending to worker:", error);
                 }
-                worker.onmessage = function(event) {
-                    const bestMove = event.data;
-                    console.log("Received move from engine:", bestMove);
-                    
-                    try {
-                        // Try to apply the move
-                        const moveResult = game.move(bestMove);
-                        console.log("Move applied:", moveResult);
-                        renderBoard();  // Vẽ lại bàn cờ sau khi máy đi
-                    } catch (error) {
-                        console.error("Error applying engine move:", error, bestMove);
-                    }
-                }
+
             }
 
         } else {
@@ -164,6 +153,20 @@ function highlightMoves(squareId) {
         });
     } else {
         console.log("No legal moves found");
+    }
+}
+
+worker.onmessage = function(event) {
+    const bestMove = event.data;
+    console.log("Received move from engine:", bestMove);
+    
+    try {
+        // Try to apply the move
+        const moveResult = game.move(bestMove);
+        console.log("Move applied:", moveResult);
+        renderBoard();  // Vẽ lại bàn cờ sau khi máy đi
+    } catch (error) {
+        console.error("Error applying engine move:", error, bestMove);
     }
 }
 

@@ -1,9 +1,9 @@
-import { Chess } from 'chess.js';
+// findBestMove.js
+const { Chess } = require("chess.js");
 
-console.log("✅ findBestMove.js loaded");
+console.log("findBestMove.js loaded");
 
-
-export default function findBestMove(fen, depth) {
+function findBestMove(fen, depth) {
   const game = new Chess(fen);
 
   function minimax(depth, maximizing) {
@@ -50,3 +50,5 @@ export default function findBestMove(fen, depth) {
 
   return bestMove;
 }
+
+module.exports = findBestMove;

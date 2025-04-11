@@ -1,5 +1,4 @@
-import findBestMove from "../findBestMove.js"; 
-
+const findBestMove = require("./findBestMove");
 console.log("✅ engine-worker.js loaded");
 
 self.addEventListener("message", ({ data: [fen, depth] }) => {

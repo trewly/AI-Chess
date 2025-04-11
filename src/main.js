@@ -8,6 +8,7 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
+            nodeIntegrationInWorker: true,
             nodeIntegration: true,  // Cho phép sử dụng require trong renderer process
             contextIsolation: false // Tắt isolation để cho phép việc này
         }
